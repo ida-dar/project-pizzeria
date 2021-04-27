@@ -128,7 +128,7 @@
             </form>
             <div class="product__images {{ class }}"> <!-- images -->
               {{#each images}}
-              {{{ this }}}
+              {{{ this }}} <!-- handlebars treats double {} as text and tripple {} as html code (here: img)-->
               {{/each}}
             </div>
           </div>
