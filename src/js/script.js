@@ -136,8 +136,42 @@
     }
     processOrder(){
       const thisProduct = this;
-
       console.log(`thsiProductProcessOrder:`, thisProduct);
+      
+      /* convert form to object structure e.g. { sauce: ['tomato'], toppings: ['olives', 'redPeppers']} */
+      const formData = utils.serializeFormToObject(thisProduct.form);
+      console.log(`formData:`, formData);
+
+      /* set price to default price */
+      let price = thisProduct.data.price;
+      
+      /* for every category (param)... */
+      for(let paramId in thisProduct.data.params){
+        /* determine param value e.g. paramId = 'toppings', param = { label: 'Toppings', type: 'checkboxes'... } */
+        const param = thisProduct.data.params[paramId];
+        console.log(`paramId:`, paramId, `param:`, param);
+
+        /* for every option in this category */
+        for(let optionId in param.options){
+          /* determine option value e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true } */
+          const option = param.options[optionId];
+          console.log(`optionId:`, optionId, `option:`, option);
+          /* check if formData includes optionId from paramId */
+          if(formData[paramId] && formData[paramId].includes(optionId)){
+            console.log(`checkedOption:`, optionId);
+            /* check if the option is default */
+            if(!option.default == true){
+              price += option.price;
+            } else if(option.default == true){ 
+              price += option.price;
+            } else {
+              price -= option.price;
+            }
+          }
+        }
+        /* update calculated price in HTML */
+        thisProduct.priceElem.innerHTML = price;
+      }
     }
   }
 
