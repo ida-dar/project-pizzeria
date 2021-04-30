@@ -160,11 +160,11 @@
           if(formData[paramId] && formData[paramId].includes(optionId)){
             console.log(`checkedOption:`, optionId);
             /* check if the option is default */
-            if(!option.default == true){
+            if(!option.default){
               price += option.price;
-            } else if(option.default == true){ 
-              price += option.price;
-            } else {
+            }
+          } else {
+            if(option.default){
               price -= option.price;
             }
           }
