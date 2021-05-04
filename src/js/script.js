@@ -336,7 +336,10 @@
     announce(){
       const thisWidget = this;
 
-      const event = new Event('updated');
+      //const event = new Event('updated');  // had to be modified to update total price after changing products number in cart
+      const event = new CustomEvent('updated', {
+        bubbles: true  // makes event bubble up through DOM (work on the item, its parent ... up to <body>, document, window). We made customed event so bubbling needs to be turned on.
+      });
       thisWidget.element.dispatchEvent(event);
     }
   }
@@ -371,6 +374,9 @@
       thisCart.dom.toggleTrigger.addEventListener('click', function(event){
         event.preventDefault();
         thisCart.dom.wrapper.classList.toggle(classNames.menuProduct.wrapperActive);
+      });
+      thisCart.dom.productList.addEventListener('updated', function(){
+        thisCart.update();
       });
     }
     add(menuProduct){
