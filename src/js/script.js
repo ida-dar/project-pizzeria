@@ -358,7 +358,7 @@
       thisCart.getElements(element);
       thisCart.initActions();
 
-      //console.log(`new Cart:`, thisCart);
+      console.log(`new Cart:`, thisCart);
     }
     getElements(element){
       const thisCart = this;
@@ -416,7 +416,7 @@
     update(){
       const thisCart = this;
 
-      const deliveryFee = settings.cart.defaultDeliveryFee;
+      thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
 
       thisCart.totalNumber = 0;
       thisCart.subTotalPrice = 0;
@@ -431,10 +431,10 @@
       if(thisCart.totalNumber === 0){
         thisCart.totalPrice = 0;
       } else {
-        thisCart.totalPrice = deliveryFee + thisCart.subTotalPrice;
+        thisCart.totalPrice = thisCart.deliveryFee + thisCart.subTotalPrice;
       }
       
-      thisCart.dom.deliveryFee.innerHTML = deliveryFee;
+      thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
       thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
       thisCart.dom.subTotalPrice.innerHTML = thisCart.subTotalPrice;
       for(let singleDomTotalPrice of thisCart.dom.totalPrice){
@@ -469,10 +469,10 @@
       const payload = {
         address: thisCart.dom.address.value,
         phone: thisCart.dom.phone.value,
-        totalPrice: thisCart.dom.totalPrice[1].innerHTML,
-        subTotalPrice: thisCart.dom.subTotalPrice.innerHTML,
-        totalNumber: thisCart.dom.totalNumber.innerHTML,
-        deliveryFee: thisCart.dom.deliveryFee.innerHTML,
+        totalPrice: thisCart.totalPrice,
+        subTotalPrice: thisCart.subTotalPrice,
+        totalNumber: thisCart.totalNumber,
+        deliveryFee: thisCart.deliveryFee,
         products: [],
       };
 
@@ -496,7 +496,7 @@
       // console.log(payload.address);
       // console.log(payload.phone);
       // console.log(payload.totalPrice);
-      // console.log(payload.subTotalPrice)
+      // console.log(payload.subTotalPrice);
       // console.log(payload.totalNumber);
       // console.log(payload.deliveryFee);
 
