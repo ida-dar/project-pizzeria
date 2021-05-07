@@ -476,6 +476,11 @@
         products: [],
       };
 
+      for(let prod of thisCart.products){
+        payload.products.push(prod.getData());
+      }
+      console.log(payload);
+
       const options = {
         method: 'POST',
         headers: {
@@ -500,9 +505,7 @@
       // console.log(payload.totalNumber);
       // console.log(payload.deliveryFee);
 
-      for(let prod of thisCart.products){
-        payload.products.push(prod.getData());
-      }
+
     }
   }
 
