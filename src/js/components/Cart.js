@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {settings, select, classNames, templates} from '../settings.js';
 import utils from '../utils.js';
 import CartProduct from './CartProduct.js';
@@ -11,7 +12,7 @@ class Cart{
     thisCart.getElements(element);
     thisCart.initActions();
 
-    console.log(`new Cart:`, thisCart);
+    //console.log(`new Cart:`, thisCart);
   }
   getElements(element){
     const thisCart = this;
@@ -62,7 +63,7 @@ class Cart{
     thisCart.dom.productList.appendChild(generatedDOM);
 
     thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
-    console.log(`thisCart.products`, thisCart.products);
+    //console.log(`thisCart.products`, thisCart.products);
 
     thisCart.update();
   }
@@ -107,9 +108,9 @@ class Cart{
     cartProductHTML.remove();
     /* remove info about the product from thisCart.products array */
     const indexOfcartProduct = thisCart.products.indexOf(cartProduct);
-    console.log(indexOfcartProduct);
+    //console.log(indexOfcartProduct);
     const removeCartProduct = thisCart.products.splice(indexOfcartProduct, 1);
-    console.log(removeCartProduct);
+    //console.log(removeCartProduct);
 
     /* call method update to recalculate prices after product removal */
     thisCart.update();
@@ -132,7 +133,7 @@ class Cart{
     for(let prod of thisCart.products){
       payload.products.push(prod.getData());
     }
-    console.log(payload);
+    //console.log(payload);
 
     const options = {
       method: 'POST',
@@ -148,7 +149,7 @@ class Cart{
         return response.json();
       })
       .then(function(parsedResponse){
-        console.log('parsedResponse', parsedResponse);
+        //console.log('parsedResponse', parsedResponse);
       });
 
     // console.log(payload.address);

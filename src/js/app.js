@@ -1,8 +1,61 @@
-import {settings, select, classNames, templates} from './settings.js'; // {} are used when we import more than one thing and it's NOT default
+import {settings, select, classNames} from './settings.js'; // {} are used when we import more than one thing and it's NOT default
 import Product from './components/Product.js'; // in Product.js we exported class Product as default, so it can be imported here without {}
 import Cart from './components/Cart.js';
 
 const app = {
+  initPages: function(){
+    const thisApp = this;
+
+    thisApp.pages = document.querySelector(select.containerOf.pages).children; // all children of pages' container will be in thisApp.pages
+    thisApp.navLinks = document.querySelectorAll(select.nav.links);
+
+    const idFromHash = window.location.hash.replace('#/', '');
+
+    let pageMatchingHash = thisApp.pages[0].id;
+
+    for(let page of thisApp.pages){
+      if(page.id === idFromHash){
+        pageMatchingHash = page.id;
+        break;
+      }
+    }
+
+    thisApp.activatePage(pageMatchingHash);
+
+    for(let link of thisApp.navLinks){
+      link.addEventListener('click', function(event){
+        event.preventDefault();
+
+        const clickedElement = this;
+
+        /* get page id from href attribute */
+        const id = clickedElement.getAttribute('href').replace('#', ''); // in href attribute replace # into '' (empty string)
+        /* run thisApp.activatePage with that id */
+        thisApp.activatePage(id);
+
+        /* change URL hash */
+        window.location.hash = '#/' + id; // '/' is added so after '#', the string doesn't match any id. It's to prevent default browser behaviour, i.e. scrolling to section with id that matches id after # in url (e.g. #order)
+      });
+    }
+  },
+
+  activatePage: function(pageId){
+    const thisApp = this;
+
+    /* add class active to matching pages, remove from non-matching */
+    for(let page of thisApp.pages){
+      page.classList.toggle(classNames.pages.active, page.id === pageId); // second argument (page.id === pageId) controls if class active should be added or not
+    }
+
+    /* add class active to matching links, remove from non-matching */
+    for(let link of thisApp.navLinks){
+      link.classList.toggle(
+        classNames.nav.active,
+        link.getAttribute('href') === `#${pageId}`
+      );
+    }
+  },
+
   initData: function(){
     const thisApp = this;
 
@@ -15,7 +68,7 @@ const app = {
         return rawResponse.json();
       })
       .then(function(parsedResponse){
-        console.log('parsedResponse', parsedResponse);
+        //*console.log('parsedResponse', parsedResponse);
 
         /* save parsedResponse as thisApp.data.products */
         thisApp.data.products = parsedResponse;
@@ -23,7 +76,7 @@ const app = {
         thisApp.initMenu();
       });
 
-    console.log('thisApp.data', JSON.stringify(thisApp.data));
+    //*console.log('thisApp.data', JSON.stringify(thisApp.data));
   },
 
   initMenu: function(){
@@ -49,15 +102,16 @@ const app = {
       app.cart.add(event.detail.product); // custom event has object detail which contains property product (thisProduct.prepareCartProduct())
     });
   },
-  
+
   init: function(){
     const thisApp = this;
-    console.log('*** App starting ***');
-    console.log('thisApp:', thisApp);
-    console.log('classNames:', classNames);
-    console.log('settings:', settings);
-    console.log('templates:', templates);
+    // console.log('*** App starting ***');
+    // console.log('thisApp:', thisApp);
+    // console.log('classNames:', classNames);
+    // console.log('settings:', settings);
+    // console.log('templates:', templates);
 
+    thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
   },

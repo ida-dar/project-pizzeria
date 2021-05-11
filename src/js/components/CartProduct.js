@@ -75,8 +75,8 @@ class CartProduct{
       price: thisCartProduct.price,
       params: thisCartProduct.params,
     };
-    console.log(cartSummary.params);
-    console.log(cartSummary.amount);
+    // console.log(cartSummary.params);
+    // console.log(cartSummary.amount);
 
     return cartSummary;
   }
