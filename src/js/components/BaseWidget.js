@@ -9,7 +9,7 @@ class BaseWidget{
   }
   get value(){ // getter of the property, here: value. Is executed whenever an atempt is made to read the property value
     const thisWidget = this;
-
+    
     return thisWidget.correctValue; // 'getter'. Can't be 'thisWidget.value', because then get value() gets into loop: by checking 'thisWidget.value' getter starts itself. So, name of the value that has to be checked has to be diffferent than in getter
   }
   set value(value){ // 'setter'. Is executed whenever an atempt is made to set new value of the property value
