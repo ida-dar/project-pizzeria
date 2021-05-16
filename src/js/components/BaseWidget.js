@@ -25,7 +25,7 @@ class BaseWidget{
     
     thisWidget.renderValue();
   }
-  setValue(value){
+  setValue(value){ // setter will be executed only if the value is correct
     const thisWidget = this;
 
     thisWidget.value = value;

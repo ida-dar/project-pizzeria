@@ -1,4 +1,5 @@
-import {select, templates} from '../settings.js';
+import {select, templates, settings} from '../settings.js';
+import utils from '../utils.js';
 import AmountWidget from './AmountWidget.js';
 import DatePicker from './DatePicker.js';
 import HourPicker from './HourPicker.js';
@@ -9,6 +10,7 @@ class Booking{
 
     thisBooking.render(element);
     thisBooking.initWidgets();
+    thisBooking.getData();
   }
   render(element){
     const thisBooking = this;
@@ -45,6 +47,60 @@ class Booking{
     });
 
 
+  }
+  getData(){
+    const thisBooking = this;
+    
+    // eslint-disable-next-line no-unused-vars
+    const startDateParam = settings.db.dateStartParamKey + '=' + utils.dateToStr(thisBooking.datePicker.minDate);
+    const endDateParam = settings.db.dateEndParamKey + '=' + utils.dateToStr(thisBooking.datePicker.maxDate);
+
+    const params = {
+      bookings: [
+        //startDateParam,
+        endDateParam,
+      ],
+      eventsCurrent: [
+        settings.db.notRepeatParam,
+        //startDateParam,
+        endDateParam,
+      ],
+      eventsRepeat: [
+        settings.db.repeatParam,
+        endDateParam,
+      ],
+    };
+
+    console.log(params);
+
+    const urls = {
+      bookings: settings.db.url + '/' + settings.db.bookings + '?' + params.bookings.join('&'),
+      eventsCurrent: settings.db.url + '/' + settings.db.events + '?' + params.eventsCurrent.join('&'),
+      eventsRepeat: settings.db.url + '/' + settings.db.events + '?' + params.eventsRepeat.join('&'),
+    };
+
+    console.log(urls);
+
+    Promise.all([ // works similar to method fetch. Promise.all() takes an array of promises as an input parameter and returns a new Promise object that will fulfil only if and when all promises in the array fulfil.
+      fetch(urls.bookings),
+      fetch(urls.eventsCurrent),
+      fetch(urls.eventsRepeat),
+    ])
+      .then(function(allResponses){ // allResponses here is an array getting all responses from all 3 fetches in Promise.all
+        const bookingsResponse = allResponses[0];
+        const eventsCurrentResponse = allResponses[1];
+        const eventsRepeatResponse = allResponses[2];
+        return Promise.all([
+          bookingsResponse.json(),
+          eventsCurrentResponse.json(),
+          eventsRepeatResponse.json(),
+        ]);
+      })
+      .then(function([bookings, eventsCurrent, eventsRepeat]){ // gets converted objects
+        console.log(`b`, bookings);
+        console.log(`eC`, eventsCurrent);
+        console.log(`eR`, eventsRepeat);
+      });
   }
 }
 
