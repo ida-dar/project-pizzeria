@@ -2,6 +2,7 @@ import {settings, select, classNames} from './settings.js'; // {} are used when 
 import Product from './components/Product.js'; // in Product.js we exported class Product as default, so it can be imported here without {}
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import HomePage from './components/HomePage.js';
 
 const app = {
   initPages: function(){
@@ -113,6 +114,14 @@ const app = {
 
   },
 
+  initHomePage:function(){
+    const thisApp = this;
+
+    const homeContainer = document.querySelector(select.containerOf.homePage);
+
+    thisApp.homePage = new HomePage(homeContainer);
+  },
+
   init: function(){
     const thisApp = this;
     // console.log('*** App starting ***');
@@ -125,6 +134,7 @@ const app = {
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
+    thisApp.initHomePage();
   },
 };
 
