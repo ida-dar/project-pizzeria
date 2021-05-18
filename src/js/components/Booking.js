@@ -8,9 +8,12 @@ class Booking{
   constructor(element){
     const thisBooking = this;
 
+    thisBooking.selectedTable = {};
+
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
+    thisBooking.initTables();
   }
   render(element){
     const thisBooking = this;
@@ -26,6 +29,7 @@ class Booking{
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
+    thisBooking.dom.tablesWrapper = thisBooking.dom.wrapper.querySelector(select.containerOf.tables);
 
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
@@ -40,12 +44,10 @@ class Booking{
 
     thisBooking.dom.peopleAmount.addEventListener('click', function(event){
       event.preventDefault();
-
     });
 
     thisBooking.dom.hoursAmount.addEventListener('click', function(event){
       event.preventDefault();
-      
     });
 
     thisBooking.dom.wrapper.addEventListener('updated', function(){ // custom event from class BaseWidget
@@ -129,13 +131,11 @@ class Booking{
       if(item.repeat === 'daily'){
         for(let loopDate = minDate; loopDate <= maxDate; loopDate = utils.addDays(loopDate, 1)){ // loopDate++ wouldn't work here, 'cause dates work differently than numbers, therefore utils.addDate is needed
           thisBooking.makeBooked(utils.dateToStr(loopDate), item.hour, item.duration, item.table);
-        
         } 
       }
     }
 
     //console.log(`thisBooking.booked`, thisBooking.booked);
-
     thisBooking.updateDOM(); // this method should be executed right after we get data from API, so in method parseData
   }
   makeBooked(date, hour, duration, table){
@@ -168,7 +168,7 @@ class Booking{
     if(
       typeof thisBooking.booked[thisBooking.date] === 'undefined' // there is no object created for this date
       ||
-      typeof thisBooking.booked[thisBooking.date][thisBooking.hour] === 'undefined' // there is no array cretaed for this date at this time
+      typeof thisBooking.booked[thisBooking.date][thisBooking.hour] === 'undefined' // there is no array created for this date at this time
     ){
       allAvailable = true;
     }
@@ -189,6 +189,45 @@ class Booking{
         table.classList.remove(classNames.booking.tableBooked);
       }
     }
+  }
+  initTables(){
+    const thisBooking = this;
+
+    thisBooking.dom.tablesWrapper.addEventListener('click', function(event){
+      event.preventDefault();
+
+      const clickedElement = event.target; // event will be used in eventListener in method initWidgets
+      //console.log(clickedElement);
+
+      if(clickedElement.hasAttribute(settings.booking.tableIdAttribute)){
+        const bookedTable = clickedElement.classList.contains(classNames.booking.tableBooked);
+        const selectedTable = clickedElement.classList.contains(classNames.booking.selectedTable);
+        const selectedTableId = parseInt(clickedElement.getAttribute(settings.booking.tableIdAttribute));
+
+        /* chcek if the table is not booked */
+        if(!bookedTable){
+          /* add its id to thisBooking.selectedTable.tableId*/
+          thisBooking.selectedTable.tableId = selectedTableId;
+          clickedElement.classList.add(classNames.booking.selectedTable);
+          /* make loop to check if there are other selected tables */
+          for(let table of thisBooking.dom.tables){
+            if(table !== clickedElement){
+              table.classList.remove(classNames.booking.selectedTable);
+            }
+          }
+
+          /* if table is selected remove class after click*/
+          if(selectedTable){
+            clickedElement.classList.remove(classNames.booking.selectedTable);
+          }
+
+        } else if(bookedTable){
+          alert('This table is unavailable, please select another one');
+        }
+      }
+
+      //console.log(thisBooking.selectedTable);
+    });
   }
 }
 
