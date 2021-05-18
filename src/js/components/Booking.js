@@ -126,7 +126,7 @@ class Booking{
     const thisBooking = this;
 
     thisBooking.booked = {};
-    console.log(thisBooking.booked);
+    //console.log(thisBooking.booked);
 
     for(let item of bookings){
       thisBooking.makeBooked(item.date, item.hour, item.duration, item.table);
@@ -200,6 +200,9 @@ class Booking{
       } else {
         table.classList.remove(classNames.booking.tableBooked);
       }
+
+      /* remove class selected to reset selected table after changing time, date, number of guests and number of hours */
+      table.classList.remove(classNames.booking.selectedTable);
     }
   }
   initTables(){
@@ -245,7 +248,7 @@ class Booking{
     const thisBooking = this;
 
     const url = settings.db.url + '/' + settings.db.bookings;
-    console.log(url);
+    //console.log(url);
 
     const payload = {
       date: thisBooking.datePicker.value,
@@ -290,7 +293,7 @@ class Booking{
       // eslint-disable-next-line no-unused-vars
       .then(function(parsedResponse){
         //console.log('parsedResponse', parsedResponse);
-        thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+        //thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
       });
   }
 }
