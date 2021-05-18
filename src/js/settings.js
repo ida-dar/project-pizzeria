@@ -10,6 +10,7 @@ export const select = {
     pages: '#pages',
     booking: '.booking-wrapper',
     tables: '.floor-plan',
+    starters: '.starters',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -44,6 +45,10 @@ export const select = {
     peopleAmount: '.people-amount',
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
+    form: '.booking-form',
+    formBooking: '.booking-form [type="submit"]',
+    phone: '.order-confirmation [name="phone"]',
+    address: '.order-confirmation [name="address"]',
   },
   nav: {
     links: '.main-nav a',
