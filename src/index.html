@@ -76,46 +76,86 @@
   </div>
 
   <script id="template-home-page" type="text/x-handlebars-template">
-    <div class="home-widget">
-      <div class="tiles-wrapper">
+    <div class="page-selection">
+      <div class="tiles-wrapper sm">
         <div class="tile tile-small">
-          <a href="#order" class="page__tile-title no-spacing">Order online</a>
+          <a href="#order" class="page__tile-title">Order online</a>
         </div>
         <div class="tile tile-small">
-          <a href="#booking" class="page__tile-title no-spacing">Book a table</a>
+          <a href="#booking" class="page__tile-title">Book a table</a>
         </div>
+      </div>
+      <div class="tiles-wrapper lg">
         <div class="tile tile-large">
-          <h3 class="page__tile-title">Opening hours</h3>
-          <h4 class="page__tile-subtitle">Tue - Sun, 12AM - 12PM</h4>
+          <h3 class="page__tile-title">Opening hours:</h3>
+          <h4 class="page__tile-subtitle no-spacing">Tue - Sun, 12AM - 12PM</h4>
         </div>
       </div>
-      <<div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "autoPlay": 3000, "wrapAround": true, "prevNextButtons": false }'>
-        <div class="carousel-cell">
-          <div class="carousel-image">
-            <img src="images/home_page/pizza-3.jpg">
-          </div>
-          <div class="carousel-review">
-            <h3 class=" carousel__review-subtitle">Amazing service</h3>
-            <p class="review-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi odit dignissimos in vitae! Voluptatibus iusto laboriosam autem quaerat iure doloribus? Aut voluptate nihil voluptatibus!<span>- Margaret Osborne</span></p>
-          </div>
-        </div>
-        <div class="carousel-cell"></div>
-        <div class="carousel-cell"></div>
-      </div>
-      <div class="image-gallery">
-        <img src="images/home_page/pizza-1.jpg">
-        <img src="images/home_page/pizza-2.jpg">
-        <img src="images/home_page/pizza-4.jpg">
-        <img src="images/home_page/pizza-5.jpg">
-        <img src="images/home_page/pizza-6.jpg">
-        <img src="images/home_page/pizza-7.jpg">
-        <img src="images/home_page/pizza-8.jpg">
-        <img src="images/home_page/pizza-9.jpg">
-      </div>
-      <footer>
-        <a href="#">View more on Instagram</a>
-      </footer>
     </div>
+    <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "autoPlay": 3000, "wrapAround": true, "prevNextButtons": false }'>
+      <div class="carousel-cell">
+        <div class="carousel-image">
+          <img src="images/home_page/pizza-3.jpg">
+        </div>
+        <div class="carousel-review">
+          <h3 class="carousel__review-subtitle">Amazing service</h3>
+          <p class="review-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eligendi odit dignissimos in vitae! Voluptatibus iusto laboriosam autem quaerat iure doloribus? Aut voluptate nihil voluptatibus!<span>- Margaret Osborne</span></p>
+        </div>
+      </div>
+      <div class="carousel-cell">
+
+      </div>
+      <div class="carousel-cell">
+
+      </div>
+    </div>
+    <div class="image-gallery">
+      <div class="image-wrapper">
+        <img src="images/home_page/pizza-4.jpg">
+        <div class="icon-wrapper">
+          <a href="#"><i class="fas fa-heart"></i></a>
+          <a href="#"><i class="fas fa-share-alt"></i></a>
+        </div>
+      </div>
+      <div class="image-wrapper">
+        <img src="images/home_page/pizza-5.jpg">
+        <div class="icon-wrapper">
+          <a href="#"><i class="fas fa-heart"></i></a>
+          <a href="#"><i class="fas fa-share-alt"></i></a>
+        </div>
+      </div>
+      <div class="image-wrapper">
+        <img src="images/home_page/pizza-6.jpg">
+        <div class="icon-wrapper">
+          <a href="#"><i class="fas fa-heart"></i></a>
+          <a href="#"><i class="fas fa-share-alt"></i></a>
+        </div>
+      </div>
+      <div class="image-wrapper">
+        <img src="images/home_page/pizza-7.jpg">
+        <div class="icon-wrapper">
+          <a href="#"><i class="fas fa-heart"></i></a>
+          <a href="#"><i class="fas fa-share-alt"></i></a>
+        </div>
+      </div>
+      <div class="image-wrapper">
+        <img src="images/home_page/pizza-8.jpg">
+        <div class="icon-wrapper">
+          <a href="#"><i class="fas fa-heart"></i></a>
+          <a href="#"><i class="fas fa-share-alt"></i></a>
+        </div>
+      </div>
+      <div class="image-wrapper">
+        <img src="images/home_page/pizza-9.jpg">
+        <div class="icon-wrapper">
+          <a href="#"><i class="fas fa-heart"></i></a>
+          <a href="#"><i class="fas fa-share-alt"></i></a>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <a href="#">View more on Instagram</a>
+    </footer>
   </script>
 
   <script id="template-booking-widget" type="text/x-handlebars-template">
