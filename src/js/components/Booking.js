@@ -9,12 +9,13 @@ class Booking{
     const thisBooking = this;
 
     thisBooking.selectedTable = {};
+    thisBooking.starters = [];
 
     thisBooking.render(element);
     thisBooking.initWidgets();
     thisBooking.getData();
     thisBooking.initTables();
-    thisBooking.sendBooking();
+    thisBooking.startersData();
   }
   render(element){
     const thisBooking = this;
@@ -244,6 +245,25 @@ class Booking{
       //console.log(thisBooking.selectedTable);
     });
   }
+  startersData(){
+    const thisBooking = this;
+
+    thisBooking.dom.starters.addEventListener('click', function(event){
+      
+      const clickedElement = event.target;
+      //console.log(clickedElement);
+      
+      if(clickedElement.tagName === 'INPUT' && clickedElement.type === 'checkbox' && clickedElement.name === 'starter'){
+        if(clickedElement.checked === true){
+          thisBooking.starters.push(clickedElement.value);
+        } else if(clickedElement.checked === false){
+          thisBooking.starters.splice(thisBooking.starters.indexOf(clickedElement.value), 1);
+        }
+      }
+    });
+
+    //console.log(thisBooking.starters);
+  }
   sendBooking(){
     const thisBooking = this;
 
@@ -256,26 +276,12 @@ class Booking{
       table: thisBooking.selectedTable.tableId || null,
       duration: thisBooking.hoursAmountWidget.value,
       ppl: thisBooking.peopleAmountWidget.value,
-      starters: [],
+      starters: thisBooking.starters,
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
     };
 
-    thisBooking.dom.starters.addEventListener('click', function(event){
-      
-      const clickedElement = event.target;
-      console.log(clickedElement);
-      
-      if(clickedElement.tagName === 'INPUT' && clickedElement.type === 'checkbox' && clickedElement.name === 'starter'){
-        if(clickedElement.checked === true){
-          payload.starters.push(clickedElement.value);
-        } else if(clickedElement.checked === false){
-          payload.starters.splice(payload.starters.indexOf(clickedElement.value), 1);
-        }
-      }
-      
-      //console.log(payload);
-    });
+    //onsole.log(payload);
     
     const options = {
       method: 'POST',
@@ -293,7 +299,7 @@ class Booking{
       // eslint-disable-next-line no-unused-vars
       .then(function(parsedResponse){
         //console.log('parsedResponse', parsedResponse);
-        //thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
+        thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
       });
   }
 }
