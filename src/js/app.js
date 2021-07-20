@@ -120,6 +120,7 @@ const app = {
     const homeContainer = document.querySelector(select.containerOf.homePage);
 
     thisApp.homePage = new HomePage(homeContainer);
+    thisApp.initPages();
   },
 
   init: function(){
@@ -139,3 +140,5 @@ const app = {
 };
 
 app.init();
+
+export default app;

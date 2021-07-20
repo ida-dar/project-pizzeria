@@ -42,6 +42,9 @@ export const select = {
       input: 'input[type="range"]',
       output: '.output',
     },
+    carousel: {
+      wrapper: '.main-carousel',
+    }
   },
   booking: {
     peopleAmount: '.people-amount',
@@ -52,8 +55,12 @@ export const select = {
     phone: '.order-confirmation [name="phone"]',
     address: '.order-confirmation [name="address"]',
   },
+  // home: {
+  //   booking: '.book-table',
+  //   order: '.order-online',
+  // },
   nav: {
-    links: '.main-nav a',
+    links: '.page-nav a',
   },
   cart: {
     productList: '.cart__order-summary',
