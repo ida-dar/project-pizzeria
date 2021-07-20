@@ -23,7 +23,6 @@
 
 .page__tile-title {
   @extend .h1;
-  margin: 0 0 ($base-size * 0.5) 0;
   color: $color-light;
   font-weight: $font-bold;
   text-decoration: none;
@@ -36,28 +35,46 @@
 }
 
 .sm {
-  :nth-child(1) {
+  .order-online {
     margin: 0 ($base-size * 0.5) 0 0;
+    background-image: url('../images/homePage/pizza-1.jpg');
   }
-
-  :nth-child(2) {
+  
+  .book-table {
     margin: 0 0 0 ($base-size * 0.5);
+    background-image: url('../images/homePage/pizza-2.jpg');
   }
   
   .tile-small {
-    background: black;
+    @include flex(column, center, center);
     background-position: center;
     background-size: cover;
-    @include flex(column, center, center);
     width: 50%;
     height: 100%;
-    transition: transform 1s ease-in-out;
+    transition: transform ease-in-out;
+    
+    .page__tile-title {
+      transition-duration: 0.75s;
+      display: block;
+    }
+    
+    .page__tile-subtitle {
+      transition-duration: 0.75s;
+      text-transform: initial;
+      display: none;
+    }
   }
 }
 
 .tile-small:hover {
-  .page__tile-title {
-    transform: translate(0, -15px);
+  .page__tile {
+    &-title {
+      transform: translateY(-10px);
+    }
+
+    &-subtitle {
+      display: block;
+    }
   }
 }
 
@@ -70,9 +87,22 @@
   }
 }
 
-/* TO DO: Carousel*/
+/* Carousel*/
 
-/**/
+.main-carousel {
+  .carousel-cell {
+    @include flex(row, center, center);
+    width: 100%;
+    height: 250px;
+
+    .carousel-review {
+      padding-left: 40px;
+    }
+
+  }
+}
+
+/* Image gallery */
 
 img {
   object-fit: cover;
@@ -91,16 +121,19 @@ img {
     position: relative;
     margin: 0 0 ($base-size* 0.5) 0;
     padding: 0;
+    z-index: 1;
     
     .icon-wrapper {
       @include center();
-      transition: $transition;
+      text-align: center;
+      width: 80px;
       z-index: 2;
       font-size: ($base-size * 2);
       visibility: hidden;
       overflow: hidden;
-      //transition: all 1s ease-in;
+      
       a {
+        padding: 0 3px;
         color: $color-light;
       }
     }
@@ -108,24 +141,23 @@ img {
 }
 
 .image-wrapper:hover {
-  
   img {
-    opacity: 0.8;
+    opacity: 0.75;
   }
   
-  /* TO DO: TRANSITION ON HOVER*/
   .icon-wrapper {
     visibility: visible;
-    transition: all 1s ease-in;
-    a {
-      color: $color-main;
-    }
+  }
+}
+
+.icon-wrapper > a:hover {
+  i {
+    color: $color-main;
+    transform: scale(1.25);
   }
 }
 
 footer {
-  //margin: 0 0 ($base-size * 4) 0;
-  
   a {
     color: $color-main;
   }

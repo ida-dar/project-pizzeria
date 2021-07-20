@@ -25,7 +25,7 @@ class Product{
     //console.log(`thisProductInMenu:`, thisProduct);
     /* generate HTML based on template */
     const generatedHTML = templates.menuProduct(thisProduct.data);
-    //console.log(`generatedHTML:`, generatedHTML); */
+    //console.log(`generatedHTML:`, generatedHTML);
     /* create element using utils.createElementFromHtml */
     thisProduct.element = utils.createDOMFromHTML(generatedHTML);
     /* find menu container */
