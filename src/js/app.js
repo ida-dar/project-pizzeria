@@ -11,6 +11,8 @@ const app = {
     thisApp.pages = document.querySelector(select.containerOf.pages).children; // all children of pages' container will be in thisApp.pages
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
+    // console.log(`pages`, thisApp.pages, `links`, thisApp.navLinks);
+
     const idFromHash = window.location.hash.replace('#/', '');
 
     let pageMatchingHash = thisApp.pages[0].id;
@@ -111,16 +113,14 @@ const app = {
     const bookingContainer = document.querySelector(select.containerOf.booking);
 
     thisApp.booking = new Booking(bookingContainer);
-
   },
 
-  initHomePage:function(){
+  initHomePage: function(){
     const thisApp = this;
 
     const homeContainer = document.querySelector(select.containerOf.homePage);
 
     thisApp.homePage = new HomePage(homeContainer);
-    thisApp.initPages();
   },
 
   init: function(){
@@ -131,11 +131,11 @@ const app = {
     // console.log('settings:', settings);
     // console.log('templates:', templates);
 
-    thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
     thisApp.initBooking();
     thisApp.initHomePage();
+    thisApp.initPages();
   },
 };
 

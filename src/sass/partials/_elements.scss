@@ -1,4 +1,7 @@
 /* Buttons */
+button {
+  cursor: pointer;
+}
 
 .btn-primary {
   @include btn($color-dark, $color-light, $color-dark);

@@ -63,9 +63,20 @@ class Booking{
 
     thisBooking.dom.form.addEventListener('submit', function(event){
       event.preventDefault();
-      thisBooking.sendBooking();
-    });
 
+      if(
+        thisBooking.selectedTable && 
+        Object.keys(thisBooking.selectedTable).length === 0 && 
+        thisBooking.selectedTable.constructor === Object
+      ) {
+        return(alert('Please select a table'));
+      } else if(thisBooking.dom.phone.value === '') { 
+        return(alert('Please enter your phone number'));
+      } else {
+        thisBooking.sendBooking();
+        confirm('Your booking was sent :)');
+      }
+    });
   }
   getData(){
     const thisBooking = this;
@@ -273,15 +284,13 @@ class Booking{
     const payload = {
       date: thisBooking.datePicker.value,
       hour: thisBooking.hourPicker.value,
-      table: thisBooking.selectedTable.tableId || null,
+      table: thisBooking.selectedTable.tableId,
       duration: thisBooking.hoursAmountWidget.value,
       ppl: thisBooking.peopleAmountWidget.value,
       starters: thisBooking.starters,
       phone: thisBooking.dom.phone.value,
       address: thisBooking.dom.address.value,
     };
-
-    //onsole.log(payload);
     
     const options = {
       method: 'POST',
@@ -301,6 +310,8 @@ class Booking{
         //console.log('parsedResponse', parsedResponse);
         thisBooking.makeBooked(payload.date, payload.hour, payload.duration, payload.table);
       });
+
+    this.getData();
   }
 }
 
