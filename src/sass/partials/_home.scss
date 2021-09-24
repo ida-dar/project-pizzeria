@@ -37,14 +37,14 @@
 .sm {
   .order-online {
     margin: 0 ($base-size * 0.5) 0 0;
-    background-image: url('../images/homePage/pizza-1.jpg');
+    background-image: url("../images/homePage/pizza-1.jpg");
   }
-  
+
   .book-table {
     margin: 0 0 0 ($base-size * 0.5);
-    background-image: url('../images/homePage/pizza-2.jpg');
+    background-image: url("../images/homePage/pizza-2.jpg");
   }
-  
+
   .tile-small {
     @include flex(column, center, center);
     background-position: center;
@@ -52,12 +52,12 @@
     width: 50%;
     height: 100%;
     transition: transform ease-in-out;
-    
+
     .page__tile-title {
       transition-duration: 0.75s;
       display: block;
     }
-    
+
     .page__tile-subtitle {
       transition-duration: 0.75s;
       text-transform: initial;
@@ -98,7 +98,6 @@
     .carousel-review {
       padding-left: 40px;
     }
-
   }
 }
 
@@ -119,10 +118,10 @@ img {
 
   .image-wrapper {
     position: relative;
-    margin: 0 0 ($base-size* 0.5) 0;
+    margin: 0 0 ($base-size * 0.5) 0;
     padding: 0;
     z-index: 1;
-    
+
     .icon-wrapper {
       @include center();
       text-align: center;
@@ -131,7 +130,7 @@ img {
       font-size: ($base-size * 2);
       visibility: hidden;
       overflow: hidden;
-      
+
       a {
         padding: 0 3px;
         color: $color-light;
@@ -144,7 +143,7 @@ img {
   img {
     opacity: 0.75;
   }
-  
+
   .icon-wrapper {
     visibility: visible;
   }
