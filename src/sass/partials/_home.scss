@@ -7,7 +7,7 @@
 }
 
 .page-selection {
-  margin: 0 0 ($base-size * 8) 0;
+  margin: 0 0 ($base-size * 6) 0;
 }
 
 .tiles-wrapper {
@@ -21,11 +21,21 @@
   }
 }
 
+.page-nav {
+  .page__tile-subtitle {
+    font-size: ($base-size * 1.25);
+  }
+}
+
 .page__tile-title {
   @extend .h1;
   color: $color-light;
   font-weight: $font-bold;
   text-decoration: none;
+
+  &:hover {
+    color: $color-light;
+  }
 }
 
 .page__tile-subtitle {
@@ -89,15 +99,31 @@
 
 /* Carousel*/
 
-.main-carousel {
-  .carousel-cell {
-    @include flex(row, center, center);
-    width: 100%;
-    height: 250px;
+.carousel {
+  
+  .carousel-inner {
+    height: 280px;
+  }
 
-    .carousel-review {
-      padding-left: 40px;
-    }
+  .carousel-indicators {
+    bottom: -50px;
+  }
+
+  .carousel-indicators button {
+    background-color: $color-dark;
+  }
+
+  .carousel-review {
+    display: inline-block;
+    height: 100%;
+    width: 50%;
+    transform: translateY(40%);
+  }
+  
+  .carousel-image {
+    display: inline-block;
+    height: 100%;
+    width: 45%;
   }
 }
 
