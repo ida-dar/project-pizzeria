@@ -1,13 +1,13 @@
 //import {select} from '../settings.js';
 
-class Carousel{
-  constructor(element){
+class Carousel {
+  constructor(element) {
     const thisCarousel = this;
 
     thisCarousel.render(element);
     thisCarousel.initPlugin();
   }
-  render(element){
+  render(element) {
     const thisCarousel = this;
 
     thisCarousel.dom = {};
@@ -15,7 +15,7 @@ class Carousel{
     thisCarousel.dom.wrapper = element;
     //thisCarousel.widget = document.querySelector(select.widgets.carousel.wrapper);
   }
-  initPlugin(){
+  initPlugin() {
     const thisCarousel = this;
 
     // eslint-disable-next-line no-undef, no-unused-vars

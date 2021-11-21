@@ -1,16 +1,16 @@
-import {select, templates} from '../settings.js';
-import Carousel from './Carousel.js';
+import { select, templates } from '../settings.js';
+// import Carousel from "./Carousel.js";
 //import app from '../app.js';
 
-class HomePage{
-  constructor(element){
+class HomePage {
+  constructor(element) {
     const thisHomePage = this;
 
     thisHomePage.render(element);
     thisHomePage.initWidgets();
     //thisHomePage.activatePage();
   }
-  render(element){
+  render(element) {
     const thisHomePage = this;
 
     /* generate HTML based on template */
@@ -21,16 +21,16 @@ class HomePage{
 
     thisHomePage.dom.wrapper = element;
     thisHomePage.dom.wrapper.innerHTML = generatedHTML;
-    thisHomePage.dom.carouselWidget = thisHomePage.dom.wrapper.querySelector(select.widgets.carousel.wrapper);
+    thisHomePage.dom.carouselWidget = thisHomePage.dom.wrapper.querySelector(
+      select.widgets.carousel.wrapper
+    );
 
     // thisHomePage.dom.order = thisHomePage.dom.wrapper.querySelector(select.home.order);
     // thisHomePage.dom.booking = thisHomePage.dom.wrapper.querySelector(select.home.booking);
-
   }
-  initWidgets(){
-    const thisHomePage = this;
-
-    thisHomePage.carouselWidget = new Carousel(thisHomePage.dom.carouselWidget);
+  initWidgets() {
+    // const thisHomePage = this;
+    // thisHomePage.carouselWidget = new Carousel(thisHomePage.dom.carouselWidget);
   }
   // activatePage(){
   //   const thisHomePage = this;
