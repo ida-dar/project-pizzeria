@@ -1,9 +1,9 @@
 # Pizzeria
 
-A project of a pizza restaurant with a possibility of booking a table and sending an order written in pure JavaScript.
-<br><br>
-You may visit the project [here](https://arcane-beach-63933.herokuapp.com/)
-<br><br>
+A project of pizza restaurant website with a possibility of booking a table and sending an order written in pure JavaScript.
+
+## Deployed version
+You may visit the project [here](https://arcane-beach-63933.herokuapp.com/).
 
 ## Used tech
 * HTML
